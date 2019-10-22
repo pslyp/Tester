@@ -1,0 +1,2 @@
+include ':app', ':materialtagview-me', ':spinerdialog'
+rootProject.name='Tester'
