@@ -1,15 +1,13 @@
-package com.example.tester;
+package com.example.tester.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.res.TypedArrayUtils;
 
 import android.content.Context;
-import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Color;
-import android.media.Image;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -20,9 +18,10 @@ import android.widget.RelativeLayout.LayoutParams;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.tester.BarChartActivity;
+import com.example.tester.R;
 import com.skyhope.materialtagview.TagView;
 import com.skyhope.materialtagview.TagView_me;
-import com.skyhope.materialtagview.enums.TagSeparator;
 import com.skyhope.materialtagview.model.TagModel;
 
 import java.util.ArrayList;
@@ -31,7 +30,7 @@ import java.util.List;
 import in.galaxyofandroid.spinerdialog.OnSpinerItemClick;
 import in.galaxyofandroid.spinerdialog.SpinnerDialog;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private SpinnerDialog spinnerDialog;
     private TagView_me tagViewMe;
@@ -40,11 +39,16 @@ public class MainActivity extends AppCompatActivity {
 
     private TextView foodLoseText;
     private ImageView addImage;
+    private Button alertDialogButton, qrCodeButton, cropImageButton, graphButton, imageRoundButton, recyclerButton, resizeLayoutButton;
+
+    private static final int GALLERY_PICK = 1010;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        initInstance();
 
         Button add = findViewById(R.id.add_text_button);
 
@@ -56,6 +60,22 @@ public class MainActivity extends AppCompatActivity {
                 LayoutParams.WRAP_CONTENT,
                 LayoutParams.WRAP_CONTENT
         );
+
+        alertDialogButton = findViewById(R.id.alert_dialog_button);
+        alertDialogButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, DialogTestActivity.class));
+            }
+        });
+
+        qrCodeButton = findViewById(R.id.qr_code_button);
+        qrCodeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, QRCodeActivity.class));
+            }
+        });
 
         addImage = findViewById(R.id.add_image_view);
         addImage.setOnClickListener(new View.OnClickListener() {
@@ -195,6 +215,40 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.crop_image_button :
+                startActivity(new Intent(MainActivity.this, CropImageActivity.class));
+                break;
+            case R.id.graph_button :
+                startActivity(new Intent(MainActivity.this, GraphActivity.class));
+                break;
+            case R.id.image_round_button :
+                startActivity(new Intent(MainActivity.this, ImageRoundedActivity.class));
+                break;
+            case R.id.recycler_view_button :
+                startActivity(new Intent(MainActivity.this, RecyclerViewActivity.class));
+                break;
+            case R.id.resize_layout_button :
+                startActivity(new Intent(MainActivity.this, ResizeLayoutActivity.class));
+                break;
+        }
+    }
+
+    private void initInstance() {
+        cropImageButton = findViewById(R.id.crop_image_button);
+        cropImageButton.setOnClickListener(this);
+        graphButton = findViewById(R.id.graph_button);
+        graphButton.setOnClickListener(this);
+        imageRoundButton = findViewById(R.id.image_round_button);
+        imageRoundButton.setOnClickListener(this);
+        recyclerButton = findViewById(R.id.recycler_view_button);
+        recyclerButton.setOnClickListener(this);
+        resizeLayoutButton = findViewById(R.id.resize_layout_button);
+        resizeLayoutButton.setOnClickListener(this);
     }
 
     private void initSearchSpinner() {

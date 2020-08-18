@@ -90,6 +90,8 @@ public class TagView extends FlexboxLayout implements TagClickListener {
 
     private int mTagTextColor;
 
+    private int mTagCrossColor;
+
     private String mTagLimitMessage;
 
     /**
@@ -119,7 +121,9 @@ public class TagView extends FlexboxLayout implements TagClickListener {
 
         mTagTextColor = getResources().getColor(R.color.white);
 
-        mAdapter = new TagViewAdapter(mTagTextColor, tagBackgroundColor);
+        mTagCrossColor = getResources().getColor(R.color.black);
+
+        mAdapter = new TagViewAdapter(mTagTextColor, tagBackgroundColor, mTagCrossColor);
 
         addEditText();
 
@@ -526,7 +530,7 @@ public class TagView extends FlexboxLayout implements TagClickListener {
     }
 
     /**
-     * This is the main challenging part of
+     * This is the resize_layout challenging part of
      * TagView. Tag list will show when user will write in editText
      * and user click will add a tag
      *

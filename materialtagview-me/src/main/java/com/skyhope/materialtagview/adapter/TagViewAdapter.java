@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Filter;
 import android.widget.Filterable;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -39,12 +40,14 @@ public class TagViewAdapter extends RecyclerView.Adapter<TagViewAdapter.TagViewH
 
     private int mTagTextColor;
     private int mTagBackgroundColor;
+    private int mTagCrossColor;
 
     private TagClickListener mClickListener;
 
-    public TagViewAdapter(int mTagTextColor, int mTagBackgroundColor) {
+    public TagViewAdapter(int mTagTextColor, int mTagBackgroundColor, int mTagCrossColor) {
         this.mTagTextColor = mTagTextColor;
         this.mTagBackgroundColor = mTagBackgroundColor;
+        this.mTagCrossColor = mTagCrossColor;
 
         mTagItemList = new ArrayList<>();
         mBackUpList = new ArrayList<>();
@@ -67,6 +70,10 @@ public class TagViewAdapter extends RecyclerView.Adapter<TagViewAdapter.TagViewH
         drawable.setColor(mTagBackgroundColor);
 
         tagViewHolder.textViewTag.setText(tag);
+
+//        GradientDrawable drawable1 = (GradientDrawable) tagViewHolder.imageViewCross.getBackground();
+//        drawable1.setColor(mTagCrossColor);
+
     }
 
     @Override
@@ -105,6 +112,10 @@ public class TagViewAdapter extends RecyclerView.Adapter<TagViewAdapter.TagViewH
 
     public void addTagBackgroundColor(int mTagBackgroundColor) {
         this.mTagBackgroundColor = mTagBackgroundColor;
+    }
+
+    public void addTagCrossColor(int mTagCrossColor) {
+        this.mTagCrossColor = mTagCrossColor;
     }
 
     public void setTagClickListener(TagClickListener listener) {
@@ -160,11 +171,13 @@ public class TagViewAdapter extends RecyclerView.Adapter<TagViewAdapter.TagViewH
     class TagViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView textViewTag;
         LinearLayout tagContainer;
+        ImageView imageViewCross;
 
         TagViewHolder(@NonNull View itemView) {
             super(itemView);
             textViewTag = itemView.findViewById(R.id.text_view_tag);
             tagContainer = itemView.findViewById(R.id.tag_container);
+            imageViewCross = itemView.findViewById(R.id.image_view_cross);
 
             itemView.setOnClickListener(this);
         }

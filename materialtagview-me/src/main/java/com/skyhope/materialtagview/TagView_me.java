@@ -45,6 +45,7 @@ public class TagView_me extends FlexboxLayout implements TagClickListener {
 
     private int tagBackgroundColor;
     private int mTagTextColor;
+    private int mTagCrossColor;
     private String mTagLimitMessage;
 
     private Drawable mCrossDrawable;
@@ -73,7 +74,9 @@ public class TagView_me extends FlexboxLayout implements TagClickListener {
 
         mTagTextColor = getResources().getColor(R.color.white);
 
-        mAdapter = new TagViewAdapter(mTagTextColor, tagBackgroundColor);
+        mTagCrossColor = getResources().getColor(R.color.black);
+
+        mAdapter = new TagViewAdapter(mTagTextColor, tagBackgroundColor, mTagCrossColor);
 
         addTextLayout();
 
@@ -309,6 +312,12 @@ public class TagView_me extends FlexboxLayout implements TagClickListener {
         mTagTextColor = Color.parseColor(color);
 
         mAdapter.addTagTextColor(mTagTextColor);
+    }
+
+    public void setTagCrossColor(String color) {
+        mTagCrossColor = Color.parseColor(color);
+
+        mAdapter.addTagCrossColor(mTagCrossColor);
     }
 
     public void setMaximumTagLimitMessage(String message) {

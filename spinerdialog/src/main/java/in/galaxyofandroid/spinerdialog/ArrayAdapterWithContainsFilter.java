@@ -47,4 +47,8 @@ public class ArrayAdapterWithContainsFilter<S> extends ArrayAdapter {
         }
         notifyDataSetChanged();
     }
+
+    public void clearList() {
+        items.clear();
+    }
 }

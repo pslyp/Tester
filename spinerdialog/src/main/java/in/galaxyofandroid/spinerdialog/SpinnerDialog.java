@@ -162,6 +162,7 @@ public class SpinnerDialog {
             @Override
             public void onClick(View v) {
                 closeSpinerDialog();
+                adapter.clearList();
             }
         });
         alertDialog.setCancelable(isCancellable());
