@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private TextView foodLoseText;
     private ImageView addImage;
-    private Button alertDialogButton, qrCodeButton, cropImageButton, graphButton, imageRoundButton, recyclerButton, resizeLayoutButton;
+    private Button alertDialogButton, qrCodeButton, cropImageButton, graphButton, imageRoundButton, recyclerButton, resizeLayoutButton, toastyButton;
 
     private static final int GALLERY_PICK = 1010;
 
@@ -235,6 +235,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.resize_layout_button :
                 startActivity(new Intent(MainActivity.this, ResizeLayoutActivity.class));
                 break;
+            case R.id.toasty_button:
+                startActivity(new Intent(MainActivity.this, ToastyActivity.class));
+                break;
         }
     }
 
@@ -249,6 +252,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         recyclerButton.setOnClickListener(this);
         resizeLayoutButton = findViewById(R.id.resize_layout_button);
         resizeLayoutButton.setOnClickListener(this);
+        toastyButton = findViewById(R.id.toasty_button);
+        toastyButton.setOnClickListener(this);
     }
 
     private void initSearchSpinner() {
